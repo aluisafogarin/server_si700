@@ -10,8 +10,6 @@ app.get('/', function(req, res){res.send('Hello world')});
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-server.listen(process.env.PORT || 3000); 
-
 const endpoint = "/products";
 
 app.get(endpoint, function(req, res){
@@ -82,6 +80,8 @@ const INVALIDATE = 'invalidate';
 function notify() {
     io.sockets.emit(INVALIDATE, 1);
 }
+
+server.listen(process.env.PORT || 3000); 
 
 /* Servidor */
 
