@@ -30,7 +30,8 @@ app.get(`${endpoint}/:id`, function(req, res){
 // Insert
 app.post(endpoint, (req, res) => {
     const product = {
-        id : parseInt(req.params.id),
+        //id : parseInt(req.params.id),
+        id: products.length,
         name : req.body["name"],
         quantity : req.body["quantity"], 
         type : req.body["type"], 
