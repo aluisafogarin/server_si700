@@ -31,14 +31,16 @@ app.get(`${endpoint}/:id`, function(req, res){
 app.post(endpoint, (req, res) => {
     const product = {
         id : parseInt(products.length),
-        name : req.body["nameProduct"],
+        name : req.body["name"],
         quantity : req.body["quantity"], 
         type : req.body["type"], 
         dateBuy: req.body["dateBuy"],
         expirationDate: req.body["expirationDate"]
     };
+    console.log("INDEX.JS - POST");
+    console.log(product.name + product.quantity + product.type + product.dateBuy + product.expirationDate);
     products.push(product);
-    res.send("1");
+    res.send(product.name + product.quantity + product.type + product.dateBuy + product.expirationDate);
 
     notify();
 });
@@ -72,8 +74,6 @@ app.delete(`${endpoint}/:id`, (req, res) => {
 /*
   Criar um socket para notificar usuários das mudanças.
 */
-
-
 // Comunicação
 const INVALIDATE = 'invalidate';
 
