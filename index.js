@@ -30,7 +30,7 @@ app.get(`${endpoint}/:id`, function(req, res){
 // Insert
 app.post(endpoint, (req, res) => {
     const product = {
-        id : parseInt(products.length),
+        id : parseInt(req.params.id),
         name : req.body["name"],
         quantity : req.body["quantity"], 
         type : req.body["type"], 
@@ -38,7 +38,6 @@ app.post(endpoint, (req, res) => {
         expirationDate: req.body["expirationDate"]
     };
     console.log("INDEX.JS - POST");
-    console.log(product.name + product.quantity + product.type + product.dateBuy + product.expirationDate);
     products.push(product);
     res.send(product.name + product.quantity + product.type + product.dateBuy + product.expirationDate);
 
