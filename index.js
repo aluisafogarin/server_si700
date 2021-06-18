@@ -35,12 +35,12 @@ app.post(endpoint, (req, res) => {
         name : req.body["name"],
         quantity : req.body["quantity"], 
         type : req.body["type"], 
-        dateBuy: req.body["dateBuy"],
+        buyDate: req.body["buyDate"],
         expirationDate: req.body["expirationDate"]
     };
     console.log("INDEX.JS - POST");
     products.push(product);
-    res.send(product.name + product.quantity + product.type + product.dateBuy + product.expirationDate);
+    res.send("1");
 
     notify();
 });
@@ -53,7 +53,7 @@ app.put(`${endpoint}/:id`, (req, res) =>{
         name : req.body["name"],
         quantity : req.body["quantity"], 
         type : req.body["type"], 
-        dateBuy: req.body["dateBuy"],
+        buyDate: req.body["buyDate"],
         expirationDate: req.body["expirationDate"]
     };
 
@@ -86,7 +86,7 @@ server.listen(process.env.PORT || 3000);
 /* Servidor */
 
 const products = [
-    {id: 0, name: "Pinça", type: "Utensílio", quantity: 10, dateBuy : "2021-06-21", expirationDate : "-"},
-    {id: 1, name: "Henna", type: "Material", quantity: 10, dateBuy : "2021-06-21", expirationDate : "-"},
-    {id: 1, name: "Algodao", type: "Descartável", quantity: 100, dateBuy : "2021-06-21", expirationDate : "-"},
+    {id: 0, name: "Pinça", type: "Utensílio", quantity: 10, buyDate : "2021-06-21", expirationDate : "-"},
+    {id: 1, name: "Henna", type: "Material", quantity: 10, buyDate : "2021-06-21", expirationDate : "-"},
+    {id: 1, name: "Algodao", type: "Descartável", quantity: 100, buyDate : "2021-06-21", expirationDate : "-"},
 ]
