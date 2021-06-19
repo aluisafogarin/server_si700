@@ -84,9 +84,9 @@ function notify() {
 server.listen(process.env.PORT || 3000); 
 
 /* Servidor */
-
+/* 
 const products = [
     {id: 0, name: "Pinça", type: "Utensílio", quantity: 10, buyDate : "2021-06-21", expirationDate : "-"},
     {id: 1, name: "Henna", type: "Material", quantity: 10, buyDate : "2021-06-21", expirationDate : "-"},
     {id: 1, name: "Algodao", type: "Descartável", quantity: 100, buyDate : "2021-06-21", expirationDate : "-"},
-]
+] */
