@@ -84,6 +84,7 @@ function notify() {
 server.listen(process.env.PORT || 3000); 
 
 /* Servidor */
+const products = [];
 /* 
 const products = [
     {id: 0, name: "Pinça", type: "Utensílio", quantity: 10, buyDate : "2021-06-21", expirationDate : "-"},
