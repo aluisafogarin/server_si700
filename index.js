@@ -56,7 +56,8 @@ app.post(endpointProducts, (req, res) => {
         quantity : req.body["quantity"], 
         type : req.body["type"], 
         buyDate: req.body["buyDate"],
-        expirationDate: req.body["expirationDate"]
+        expirationDate: req.body["expirationDate"],
+        cash : req.body["cash"]
     };
 
     products.push(product);
@@ -90,7 +91,8 @@ app.put(`${endpointProducts}/:id`, (req, res) => {
         quantity : req.body["quantity"], 
         type : req.body["type"], 
         buyDate: req.body["buyDate"],
-        expirationDate: req.body["expirationDate"]
+        expirationDate: req.body["expirationDate"],
+        cash : req.body["cash"]
     };
 
     products[id] = product;
