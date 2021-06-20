@@ -15,7 +15,7 @@ const endpointCashier = "/cashier";
 
 /* Servidor */
 const products = [];
-/* const cashier = []; */
+ const cashier = [];
 
 app.get(endpointProducts, function(req, res){
     res.send(products.filter(Boolean));
