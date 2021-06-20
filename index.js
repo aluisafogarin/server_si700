@@ -51,7 +51,6 @@ app.get(`${endpointCashier}/:id`, function(req, res) {
 // Insert
 app.post(endpointProducts, (req, res) => {
     const product = {
-        //id : parseInt(req.params.id),
         id: products.length,
         name : req.body["name"],
         quantity : req.body["quantity"], 
@@ -67,8 +66,9 @@ app.post(endpointProducts, (req, res) => {
 });
 
 app.post(endpointCashier, (req, res) => {
+    console.log(cashier.length);
     const cash = {
-        id = cashier.length,
+        id : cashier.length,
         value : req.body["value"],
         description : req.body["description"],
         date : req.body["date"]
@@ -99,10 +99,10 @@ app.put(`${endpointProducts}/:id`, (req, res) => {
     notify();
 });
 
-/* app.put(`${endpointCashier}/:id`, (req, res) => {
+app.put(`${endpointCashier}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
     const cash = {
-        id = cashier.length,
+        id : id,
         value : req.body["value"],
         description : req.body["description"],
         date : req.body["date"]
@@ -112,7 +112,7 @@ app.put(`${endpointProducts}/:id`, (req, res) => {
     res.send("1");
 
     notify();
-}); */
+});
 
 app.delete(`${endpointProducts}/:id`, (req, res) => {
     const id = req.params.id;
@@ -122,13 +122,13 @@ app.delete(`${endpointProducts}/:id`, (req, res) => {
     notify();
 });
 
-/* app.delete(`${endpointCashier}/:id`, (req, res) => {
+app.delete(`${endpointCashier}/:id`, (req, res) => {
     const id = req.params.id;
     delete cashier[id];
     res.send("1");
 
     notify();
-}); */
+});
 
 /*
   Criar um socket para notificar usuários das mudanças.
