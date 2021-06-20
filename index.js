@@ -21,9 +21,9 @@ app.get(endpointProducts, function(req, res){
     res.send(products.filter(Boolean));
 });
 
-/* app.get(endpointCashier, function(req, res) {
+app.get(endpointCashier, function(req, res) {
     res.send(cashier.filter(Boolean));
-}); */
+});
 
 // Get
 app.get(`${endpointProducts}/:id`, function(req, res){
