@@ -21,9 +21,9 @@ app.get(endpointProducts, function(req, res){
     res.send(products.filter(Boolean));
 });
 
-app.get(endpointCashier, function(req, res) {
+/* app.get(endpointCashier, function(req, res) {
     res.send(cashier.filter(Boolean));
-});
+}); */
 
 // Get
 app.get(`${endpointProducts}/:id`, function(req, res){
@@ -37,7 +37,7 @@ app.get(`${endpointProducts}/:id`, function(req, res){
     }  
 });
 
-app.get(`${endpointCashier}/:id`, function(req, res) {
+/* app.get(`${endpointCashier}/:id`, function(req, res) {
     const id = req.params.id;
     const cash = cashier[id];
 
@@ -46,7 +46,7 @@ app.get(`${endpointCashier}/:id`, function(req, res) {
     } else {
         res.send(cash);
     }
-})
+}) */
 
 // Insert
 app.post(endpointProducts, (req, res) => {
@@ -66,7 +66,7 @@ app.post(endpointProducts, (req, res) => {
     notify();
 });
 
-app.post(endpointCashier, (req, res) => {
+/* app.post(endpointCashier, (req, res) => {
     const cash = {
         id = cashier.length,
         value : req.body["value"],
@@ -76,7 +76,7 @@ app.post(endpointCashier, (req, res) => {
 
     notify();
 });
-
+ */
 // Atualização
 app.put(`${endpointProducts}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
@@ -95,7 +95,7 @@ app.put(`${endpointProducts}/:id`, (req, res) => {
     notify();
 });
 
-app.put(`${endpointCashier}/:id`, (req, res) => {
+/* app.put(`${endpointCashier}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
     const cash = {
         id = cashier.length,
@@ -108,7 +108,7 @@ app.put(`${endpointCashier}/:id`, (req, res) => {
     res.send("1");
 
     notify();
-});
+}); */
 
 app.delete(`${endpointProducts}/:id`, (req, res) => {
     const id = req.params.id;
@@ -118,13 +118,13 @@ app.delete(`${endpointProducts}/:id`, (req, res) => {
     notify();
 });
 
-app.delete(`${endpointCashier}/:id`, (req, res) => {
+/* app.delete(`${endpointCashier}/:id`, (req, res) => {
     const id = req.params.id;
     delete cashier[id];
     res.send("1");
 
     notify();
-});
+}); */
 
 /*
   Criar um socket para notificar usuários das mudanças.
