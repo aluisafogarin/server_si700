@@ -38,7 +38,7 @@ app.post(endpoint, (req, res) => {
         buyDate: req.body["buyDate"],
         expirationDate: req.body["expirationDate"]
     };
-    console.log("INDEX.JS - POST");
+
     products.push(product);
     res.send("1");
 
@@ -46,7 +46,7 @@ app.post(endpoint, (req, res) => {
 });
 
 // Atualização
-app.put(`${endpoint}/:id`, (req, res) =>{
+app.put(`${endpoint}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
     const product = {
         id : id,
@@ -58,7 +58,7 @@ app.put(`${endpoint}/:id`, (req, res) =>{
     };
 
     products[id] = product;
-    notes.push(products[id]);
+    product.push(products[id]);
     res.send("1");
 
     notify();
