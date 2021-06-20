@@ -10,13 +10,23 @@ app.get('/', function(req, res){res.send('Hello world')});
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
-const endpoint = "/products";
+const endpointProducts = "/products";
+const endpointCashier = "/cashier";
 
-app.get(endpoint, function(req, res){
+/* Servidor */
+const products = [];
+const cashier = [];
+
+app.get(endpointProducts, function(req, res){
     res.send(products.filter(Boolean));
 });
 
-app.get(`${endpoint}/:id`, function(req, res){
+app.get(endpointCashier, function(req, res) {
+    res.send(cashier.filter(Boolean));
+});
+
+// Get
+app.get(`${endpointProducts}/:id`, function(req, res){
     const id = req.params.id;
     const product = products[id];
 
@@ -27,8 +37,19 @@ app.get(`${endpoint}/:id`, function(req, res){
     }  
 });
 
+app.get(`${endpointCashier}/:id`, function(req, res) {
+    const id = req.params.id;
+    const cash = cashier[id];
+
+    if (!cash) {
+        res.send("{}");
+    } else {
+        res.send(cash);
+    }
+})
+
 // Insert
-app.post(endpoint, (req, res) => {
+app.post(endpointProducts, (req, res) => {
     const product = {
         //id : parseInt(req.params.id),
         id: products.length,
@@ -45,8 +66,19 @@ app.post(endpoint, (req, res) => {
     notify();
 });
 
+app.post(endpointCashier, (req, res) => {
+    const cash = {
+        id = cashier.length,
+        value : req.body["value"],
+        description : req.body["description"],
+        date : req.body["date"]
+    }
+
+    notify();
+});
+
 // Atualização
-app.put(`${endpoint}/:id`, (req, res) => {
+app.put(`${endpointProducts}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
     const product = {
         id : id,
@@ -63,9 +95,32 @@ app.put(`${endpoint}/:id`, (req, res) => {
     notify();
 });
 
-app.delete(`${endpoint}/:id`, (req, res) => {
+app.put(`${endpointCashier}/:id`, (req, res) => {
+    const id = parseInt(req.params.id);
+    const cash = {
+        id = cashier.length,
+        value : req.body["value"],
+        description : req.body["description"],
+        date : req.body["date"]
+    }
+
+    cashier[id] = cash;
+    res.send("1");
+
+    notify();
+});
+
+app.delete(`${endpointProducts}/:id`, (req, res) => {
     const id = req.params.id;
     delete products[id];
+    res.send("1");
+
+    notify();
+});
+
+app.delete(`${endpointCashier}/:id`, (req, res) => {
+    const id = req.params.id;
+    delete cashier[id];
     res.send("1");
 
     notify();
@@ -83,8 +138,7 @@ function notify() {
 
 server.listen(process.env.PORT || 3000); 
 
-/* Servidor */
-const products = [];
+
 /* 
 const products = [
     {id: 0, name: "Pinça", type: "Utensílio", quantity: 10, buyDate : "2021-06-21", expirationDate : "-"},
