@@ -37,7 +37,7 @@ app.get(`${endpointProducts}/:id`, function(req, res){
     }  
 });
 
-/* app.get(`${endpointCashier}/:id`, function(req, res) {
+app.get(`${endpointCashier}/:id`, function(req, res) {
     const id = req.params.id;
     const cash = cashier[id];
 
@@ -46,7 +46,7 @@ app.get(`${endpointProducts}/:id`, function(req, res){
     } else {
         res.send(cash);
     }
-}) */
+});
 
 // Insert
 app.post(endpointProducts, (req, res) => {
