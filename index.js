@@ -58,7 +58,7 @@ app.put(`${endpoint}/:id`, (req, res) => {
     };
 
     products[id] = product;
-    product.push(products[id]);
+    products.push(products[id]);
     res.send("1");
 
     notify();
