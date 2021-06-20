@@ -66,17 +66,21 @@ app.post(endpointProducts, (req, res) => {
     notify();
 });
 
-/* app.post(endpointCashier, (req, res) => {
+app.post(endpointCashier, (req, res) => {
     const cash = {
         id = cashier.length,
         value : req.body["value"],
         description : req.body["description"],
         date : req.body["date"]
-    }
+    };
+
+    cashier.push(cash);
+    res.send("1");
 
     notify();
 });
- */
+
+
 // Atualização
 app.put(`${endpointProducts}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
