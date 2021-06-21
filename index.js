@@ -11,18 +11,18 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 const endpointProducts = "/products";
-const endpointCashier = "/cashier";
+const endpointShopList = "/shoplist";
 
 /* Servidor */
 const products = [];
- const cashier = [];
+const shopList = [];
 
 app.get(endpointProducts, function(req, res){
     res.send(products.filter(Boolean));
 });
 
-app.get(endpointCashier, function(req, res) {
-    res.send(cashier.filter(Boolean));
+app.get(endpointShopList, function(req, res) {
+    res.send(shopList.filter(Boolean));
 });
 
 // Get
@@ -37,9 +37,9 @@ app.get(`${endpointProducts}/:id`, function(req, res){
     }  
 });
 
-app.get(`${endpointCashier}/:id`, function(req, res) {
+app.get(`${endpointShopList}/:id`, function(req, res) {
     const id = req.params.id;
-    const cash = cashier[id];
+    const item = shopList[id];
 
     if (!cash) {
         res.send("{}");
@@ -66,16 +66,14 @@ app.post(endpointProducts, (req, res) => {
     notify();
 });
 
-app.post(endpointCashier, (req, res) => {
-    console.log(cashier.length);
-    const cash = {
-        id : cashier.length,
-        value : req.body["value"],
-        description : req.body["description"],
-        date : req.body["date"]
+app.post(endpointShopList, (req, res) => {
+    const item = {
+        id : shopList.length,
+        item : req.body["item"],
+        quantity : req.body["quantity"],
     };
 
-    cashier.push(cash);
+    shopList.push(item);
     res.send("1");
 
     notify();
@@ -101,16 +99,15 @@ app.put(`${endpointProducts}/:id`, (req, res) => {
     notify();
 });
 
-app.put(`${endpointCashier}/:id`, (req, res) => {
+app.put(`${endpointShopList}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
-    const cash = {
+    const item = {
         id : id,
-        value : req.body["value"],
-        description : req.body["description"],
-        date : req.body["date"]
+        item : req.body["item"],
+        quantity : req.body["quantity"],
     }
 
-    cashier[id] = cash;
+    shopList[id] = item;
     res.send("1");
 
     notify();
@@ -124,9 +121,9 @@ app.delete(`${endpointProducts}/:id`, (req, res) => {
     notify();
 });
 
-app.delete(`${endpointCashier}/:id`, (req, res) => {
+app.delete(`${endpointShopList}/:id`, (req, res) => {
     const id = req.params.id;
-    delete cashier[id];
+    delete shopList[id];
     res.send("1");
 
     notify();
