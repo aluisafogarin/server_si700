@@ -13,7 +13,7 @@ const io = require('socket.io')(server);
 const endpointProducts = "/products";
 const endpointShopList = "/shoplist";
 
-/* Servidor */
+/* ---------- SERVIDOR ----------  */
 const products = [];
 const shopList = [];
 
@@ -25,7 +25,7 @@ app.get(endpointShopList, function(req, res) {
     res.send(shopList.filter(Boolean));
 });
 
-// Get
+/* ---------- GET ----------  */
 app.get(`${endpointProducts}/:id`, function(req, res){
     const id = req.params.id;
     const product = products[id];
@@ -48,7 +48,7 @@ app.get(`${endpointShopList}/:id`, function(req, res) {
     }
 });
 
-// Insert
+/* --------- INSERT ----------  */
 app.post(endpointProducts, (req, res) => {
     const product = {
         id: products.length,
@@ -80,7 +80,7 @@ app.post(endpointShopList, (req, res) => {
 }); 
 
 
-// Atualização
+/* ---------- UPDATE ----------  */
 app.put(`${endpointProducts}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
     const product = {
@@ -113,6 +113,7 @@ app.put(`${endpointShopList}/:id`, (req, res) => {
     notify();
 }); 
 
+/* ---------- DELETE ----------  */
 app.delete(`${endpointProducts}/:id`, (req, res) => {
     const id = req.params.id;
     delete products[id];
@@ -129,7 +130,6 @@ app.delete(`${endpointShopList}/:id`, (req, res) => {
     notify();
 }); 
 
-// Comunicação
 const INVALIDATE = 'invalidate';
 
 function notify() {
