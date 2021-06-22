@@ -81,6 +81,7 @@ app.post(endpointShopList, (req, res) => {
 
 
 /* ---------- UPDATE ----------  */
+
 app.put(`${endpointProducts}/:id`, (req, res) => {
     const id = parseInt(req.params.id);
     const product = {
